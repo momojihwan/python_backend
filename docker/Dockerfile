@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.1-cudnn8-devel-ubuntu20.04
+FROM nvcr.io/nvidia/tritonserver:20.12-py3
 ENV LANG C.UTF-8
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -56,7 +56,7 @@ RUN apt-get upgrade -y
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-ARG workspace=/home/jpong/Workspace
+ARG workspace=/home/mozi/Workspace
 ENV WORKSPACE ${workspace}
 RUN mkdir -p ${workspace}
 WORKDIR ${workspace}
@@ -64,11 +64,11 @@ WORKDIR ${workspace}
 ARG root_passwd=root
 RUN echo "root:${root_passwd}" | chpasswd
 
-ARG user=jpong
-ARG group=jpong
+ARG user=mozi
+ARG group=mozi
 ARG uid=911
 ARG gid=911
-ARG passwd=dsp2020
+ARG passwd=mozimozi
 
 RUN groupadd -g ${gid} ${group} \
   && useradd -u ${uid} -g ${gid} -m -s /bin/bash ${user} \
